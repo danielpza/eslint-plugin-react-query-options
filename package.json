@@ -1,0 +1,28 @@
+{
+  "name": "eslint-plugin-react-query-options",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "node --run build"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "query",
+    "react-query",
+    "tanstack-query"
+  ],
+  "author": {
+    "name": "Daniel Perez Alvarez",
+    "url": "https://danielpza.xyz"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.16.1+sha512.0e155aa2629db8672b49e8475da6226aa4bdea85fdcdfdc15350874946d4f3c91faaf64cbdc4a5d1ab8002f473d5c3fcedcd197989cf0390f9badd3c04678706",
+  "devDependencies": {
+    "@tsconfig/node-lts": "^22.0.2",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  }
+}
