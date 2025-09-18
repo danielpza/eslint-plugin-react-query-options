@@ -10,6 +10,10 @@
     "eslint-docs:lint": "eslint-doc-generator --check",
     "prepare": "node --run build"
   },
+  "files": [
+    "docs",
+    "dist"
+  ],
   "keywords": [
     "eslint",
     "eslintplugin",
