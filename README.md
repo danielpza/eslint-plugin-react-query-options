@@ -5,11 +5,11 @@ Eslint plugin for tanstack query to enforce using the `queryOptions` api inspire
 ## Usage
 
 ```js
-import eslintPluginReactQueryOptions from "eslint-plugin-react-query-options";
+import reactQueryOptions from "eslint-plugin-react-query-options";
 
 export default [
   // ...
-  eslintPluginReactQueryOptions.configs.recommended,
+  reactQueryOptions.configs.recommended,
 ];
 ```
 

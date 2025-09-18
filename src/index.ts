@@ -1,7 +1,7 @@
 import requireQueryOptions from "./rules/require-query-options.js";
 import pkg from "../package.json" with { type: "json" };
 
-const eslintPluginReactQueryOptions = {
+const reactQueryOptions = {
   meta: {
     name: pkg.name,
     version: pkg.version,
@@ -19,7 +19,7 @@ const configs = {
   recommended: [
     {
       plugins: {
-        "react-query-options": eslintPluginReactQueryOptions,
+        "react-query-options": reactQueryOptions,
       },
       rules: {
         "react-query-options/require-query-options": "error",
@@ -28,4 +28,4 @@ const configs = {
   ],
 };
 
-export default eslintPluginReactQueryOptions;
+export default reactQueryOptions;
