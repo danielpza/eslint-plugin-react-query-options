@@ -21,9 +21,19 @@ export default [
 💼 Configurations enabled in.\
 ✅ Set in the `recommended` configuration.
 
-| Name                                                         | Description                                                         | 💼 |
-| :----------------------------------------------------------- | :------------------------------------------------------------------ | :- |
-| [require-query-options](docs/rules/require-query-options.md) | Enforce use*Query functions are called with a queryOptions pattern. | ✅  |
+| Name                                                                 | Description                                                                                                                                          | 💼 |
+| :------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :- |
+| [use-query-no-inline-query](docs/rules/use-query-no-inline-query.md) | Enforces useQuery (and family) hooks use some form of query constructor pattern. Will error if queryKey or queryFn properties are passed to the hook | ✅  |
 
 <!-- end auto-generated rules list -->
 <!-- prettier-ignore-end -->
+
+## Configs
+
+<!-- begin auto-generated configs list -->
+
+|    | Name          |
+| :- | :------------ |
+| ✅  | `recommended` |
+
+<!-- end auto-generated configs list -->

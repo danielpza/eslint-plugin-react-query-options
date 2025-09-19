@@ -1,4 +1,4 @@
-# Enforce use*Query functions are called with a queryOptions pattern (`react-query-options/require-query-options`)
+# Enforces useQuery (and family) hooks use some form of query constructor pattern. Will error if queryKey or queryFn properties are passed to the hook (`react-query-options/use-query-no-inline-query`)
 
 💼 This rule is enabled in the ✅ `recommended` config.
 

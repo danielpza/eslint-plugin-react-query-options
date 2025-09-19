@@ -1,4 +1,5 @@
-import requireQueryOptions from "./rules/require-query-options.js";
+import useQueryNoInlineQuery from "./rules/use-query-no-inline-query.js";
+
 import pkg from "../package.json" with { type: "json" };
 
 const reactQueryOptions = {
@@ -11,7 +12,7 @@ const reactQueryOptions = {
     return configs;
   },
   rules: {
-    "require-query-options": requireQueryOptions,
+    [useQueryNoInlineQuery.name]: useQueryNoInlineQuery.rule,
   },
 };
 
@@ -19,10 +20,11 @@ const configs = {
   recommended: [
     {
       plugins: {
-        "react-query-options": reactQueryOptions,
+        [reactQueryOptions.meta.namespace]: reactQueryOptions,
       },
       rules: {
-        "react-query-options/require-query-options": "error",
+        [`${reactQueryOptions.meta.namespace}/${useQueryNoInlineQuery.name}`]:
+          "error",
       },
     },
   ],

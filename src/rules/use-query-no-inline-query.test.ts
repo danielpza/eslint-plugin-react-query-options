@@ -2,11 +2,11 @@ import "../_test/setup.js";
 
 import { RuleTester } from "@typescript-eslint/rule-tester";
 
-import requireQueryOptions from "./require-query-options.js";
+import requireQueryOptions from "./use-query-no-inline-query.js";
 
 const ruleTester = new RuleTester({});
 
-ruleTester.run("require-query-options", requireQueryOptions, {
+ruleTester.run(requireQueryOptions.name, requireQueryOptions.rule, {
   valid: [
     { code: `useQuery(usersQuery)` },
     { code: `useQuery({ ...usersQuery })` },
@@ -16,19 +16,19 @@ ruleTester.run("require-query-options", requireQueryOptions, {
   invalid: [
     {
       code: `useQuery({ queryKey: [] })`,
-      errors: [{ messageId: "require-query-options" }],
+      errors: [{ messageId: "no-inline-query" }],
     },
     {
       code: `const users = useQuery({ ...queryOptions, queryKey: [] })`,
-      errors: [{ messageId: "require-query-options" }],
+      errors: [{ messageId: "no-inline-query" }],
     },
     {
       code: `const users = useQuery({ queryFn: () => {} })`,
-      errors: [{ messageId: "require-query-options" }],
+      errors: [{ messageId: "no-inline-query" }],
     },
     {
       code: `const users = useQuery({ ...queryOptions, queryFn: () => {} })`,
-      errors: [{ messageId: "require-query-options" }],
+      errors: [{ messageId: "no-inline-query" }],
     },
   ],
 });
