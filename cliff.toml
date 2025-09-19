@@ -37,3 +37,6 @@ commit_parsers = [
   { message = "^chore\\(release\\):", skip = true },
   { message = "^chore|^ci", group = "Miscellaneous Tasks" },
 ]
+
+[bump]
+breaking_always_bump_major = false # stay on v0.x.y
