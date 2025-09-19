@@ -1,13 +1,5 @@
-import {
-  AST_NODE_TYPES,
-  ESLintUtils,
-  TSESTree,
-} from "@typescript-eslint/utils";
-
-const createRule = ESLintUtils.RuleCreator(
-  (name) =>
-    `https://github.com/danielpza/eslint-plugin-react-query/docs/rules/${name}.md`,
-);
+import { AST_NODE_TYPES } from "@typescript-eslint/utils";
+import { createRule, isValidQueryNode } from "../utils.js";
 
 const useQueryHooks = [
   // see https://tanstack.com/query/latest/docs/framework/react/reference/useQuery
@@ -18,23 +10,6 @@ const useQueryHooks = [
   "useSuspenseQueries",
   "useSuspenseInfiniteQuery",
 ];
-
-const invalidProperties = ["queryKey", "queryFn"];
-
-function isValidQueryNode(queryNode: TSESTree.Node) {
-  // we only care about object expressions
-  if (queryNode.type !== AST_NODE_TYPES.ObjectExpression) return true;
-
-  // check if any of the properties is queryKey or queryFn
-  const hasInvalidProperties = queryNode.properties.find(
-    (property) =>
-      property.type === AST_NODE_TYPES.Property &&
-      property.key.type === AST_NODE_TYPES.Identifier &&
-      invalidProperties.includes(property.key.name),
-  );
-
-  return !hasInvalidProperties;
-}
 
 const name = "use-query-no-inline-query";
 

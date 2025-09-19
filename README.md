@@ -21,9 +21,10 @@ export default [
 💼 Configurations enabled in.\
 ✅ Set in the `recommended` configuration.
 
-| Name                                                                 | Description                                                                                                                                          | 💼 |
-| :------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :- |
-| [use-query-no-inline-query](docs/rules/use-query-no-inline-query.md) | Enforces useQuery (and family) hooks use some form of query constructor pattern. Will error if queryKey or queryFn properties are passed to the hook | ✅  |
+| Name                                                                                   | Description                                                                                                                                          | 💼 |
+| :------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :- |
+| [invalidate-queries-no-inline-query](docs/rules/invalidate-queries-no-inline-query.md) | Enforces queryClient.invalidateQueries don't have inline queries. Will error if queryKey or queryFn properties are passed to the function            | ✅  |
+| [use-query-no-inline-query](docs/rules/use-query-no-inline-query.md)                   | Enforces useQuery (and family) hooks use some form of query constructor pattern. Will error if queryKey or queryFn properties are passed to the hook | ✅  |
 
 <!-- end auto-generated rules list -->
 <!-- prettier-ignore-end -->

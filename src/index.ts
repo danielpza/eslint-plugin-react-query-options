@@ -1,6 +1,9 @@
 import useQueryNoInlineQuery from "./rules/use-query-no-inline-query.js";
+import invalidateQueriesNoInlineQuery from "./rules/invalidate-queries-no-inline-query.js";
 
 import pkg from "../package.json" with { type: "json" };
+
+const rules = [useQueryNoInlineQuery, invalidateQueriesNoInlineQuery];
 
 const reactQueryOptions = {
   meta: {
@@ -11,9 +14,7 @@ const reactQueryOptions = {
   get configs() {
     return configs;
   },
-  rules: {
-    [useQueryNoInlineQuery.name]: useQueryNoInlineQuery.rule,
-  },
+  rules: Object.fromEntries(rules.map((rule) => [rule.name, rule.rule])),
 };
 
 const configs = {
@@ -22,10 +23,12 @@ const configs = {
       plugins: {
         [reactQueryOptions.meta.namespace]: reactQueryOptions,
       },
-      rules: {
-        [`${reactQueryOptions.meta.namespace}/${useQueryNoInlineQuery.name}`]:
+      rules: Object.fromEntries(
+        rules.map((rule) => [
+          [`${reactQueryOptions.meta.namespace}/${rule.name}`],
           "error",
-      },
+        ]),
+      ),
     },
   ],
 };

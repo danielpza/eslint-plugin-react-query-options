@@ -1,4 +1,4 @@
-# Enforces useQuery (and family) hooks use some form of query constructor pattern. Will error if queryKey or queryFn properties are passed to the hook (`react-query-options/use-query-no-inline-query`)
+# Enforces queryClient.invalidateQueries don't have inline queries. Will error if queryKey or queryFn properties are passed to the function (`react-query-options/invalidate-queries-no-inline-query`)
 
 💼 This rule is enabled in the ✅ `recommended` config.
 
@@ -7,12 +7,12 @@
 ## Fail
 
 ```js
-useQuery({
+queryClient.invalidateQueries({
   queryKey: [/**/],
   /* additional properties */
 })
 
-useQuery({
+queryClient.invalidateQueries({
   queryFn: () => { /**/ }
   /* additional properties */
 })
@@ -31,9 +31,9 @@ const queryBuilder = () => ({
   queryFn: () => { /**/ }
 })
 
-useQuery(query)
-useQuery(queryBuilder())
-useQuery({
+queryClient.invalidateQueries(query)
+queryClient.invalidateQueries(queryBuilder())
+queryClient.invalidateQueries({
   ...queryBuilder(),
   /* additional properties */
   select: (data) => data
