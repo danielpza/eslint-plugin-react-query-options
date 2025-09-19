@@ -1,11 +1,15 @@
-import { AST_NODE_TYPES, ESLintUtils } from "@typescript-eslint/utils";
+import {
+  AST_NODE_TYPES,
+  ESLintUtils,
+  TSESTree,
+} from "@typescript-eslint/utils";
 
 const createRule = ESLintUtils.RuleCreator(
   (name) =>
     `https://github.com/danielpza/eslint-plugin-react-query/src/rules/${name}.ts`,
 );
 
-const hooks = [
+const useQueryHooks = [
   // see https://tanstack.com/query/latest/docs/framework/react/reference/useQuery
   "useQuery",
   "useQueries",
@@ -16,6 +20,21 @@ const hooks = [
 ];
 
 const invalidProperties = ["queryKey", "queryFn"];
+
+function isValidQueryNode(queryNode: TSESTree.Node) {
+  // we only care about object expressions
+  if (queryNode.type !== AST_NODE_TYPES.ObjectExpression) return true;
+
+  // check if any of the properties is queryKey or queryFn
+  const hasInvalidProperties = queryNode.properties.find(
+    (property) =>
+      property.type === AST_NODE_TYPES.Property &&
+      property.key.type === AST_NODE_TYPES.Identifier &&
+      invalidProperties.includes(property.key.name),
+  );
+
+  return !hasInvalidProperties;
+}
 
 export default createRule({
   name: "require-query-options",
@@ -35,24 +54,16 @@ export default createRule({
   create(context) {
     return {
       CallExpression(node) {
-        // Check if it's use*Query hook
         if (node.callee.type !== AST_NODE_TYPES.Identifier) return;
-        if (!hooks.includes(node.callee.name)) return;
+        if (!useQueryHooks.includes(node.callee.name)) return;
 
+        // use*Query hook call
         if (!node.arguments[0]) return;
 
         // if if caller first argument is an object
-        if (node.arguments[0].type !== AST_NODE_TYPES.ObjectExpression) return;
+        const queryNode = node.arguments[0];
 
-        // check if any of the properties is queryKey or queryFn
-        const hasInvalidProperties = node.arguments[0].properties.find(
-          (property) =>
-            property.type === AST_NODE_TYPES.Property &&
-            property.key.type === AST_NODE_TYPES.Identifier &&
-            invalidProperties.includes(property.key.name),
-        );
-
-        if (hasInvalidProperties)
+        if (!isValidQueryNode(queryNode))
           context.report({
             messageId: "require-query-options",
             node,
