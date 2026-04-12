@@ -1,5 +1,8 @@
 # eslint-plugin-react-query-options
 
+> [!WARNING]
+> Most functionality of this plugin is already built-in in the official `@tanstack/eslint-plugin-query` package, see https://github.com/TanStack/query/pull/10359
+
 Eslint plugin for tanstack query to enforce using the `queryOptions` api inspired by [this post](https://tkdodo.eu/blog/the-query-options-api) from TkDodo
 
 ## Usage
